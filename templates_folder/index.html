@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YDY's Search Engine</title>
+    <style>
+        body {
+            background-image: url(../static/background.png);
+            background-size: cover;
+            margin: 50;
+            padding: 50;
+        }
+
+        .container {
+            margin-top: 75px;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            width: 400px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: rgb(30, 30, 188);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .build-index-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: white;">Rain's Search Engine</h1>
+        <form id="search-form" method="post">
+            <select id="search-type" name="search_type">
+                <option value="words">Show matched words</option>
+                <option value="texts">Show matched texts</option>
+                <option value="search_amb">Search with ambiguity</option>
+                <option value="search_stem">Search by stemming</option>
+            </select>
+            <input type="text" name="query" placeholder="Enter your query">
+            <input type="number" name="n" placeholder="Number of results" value="10">
+            <input type="submit" value="Search">
+        </form>
+        <form action="/build-index" method="post" class="build-index-button">
+            <input type="submit" value="Build Index">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = document.getElementById('search-form');
+            var searchType = document.getElementById('search-type').value;
+            if (searchType === 'words') {
+                form.action = '/search';
+            } else if (searchType === 'texts') {
+                form.action = '/search_text';
+            } else if (searchType === 'search_amb') {
+                form.action = '/search_amb';
+            }
+            else if (searchType === 'search_stem') {
+                form.action = '/search_stem';
+            }
+            form.submit();
+        });
+    </script>
+</body>
+</html>

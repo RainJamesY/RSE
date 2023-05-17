@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            background-image: url(../static/background4.png);
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        h3, p {
+            margin: 0;
+        }
+
+        .rank {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .score {
+            color: #999;
+        }
+
+        .docno {
+            color: #666;
+        }
+
+        .snippet {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: white;">Search Results</h1>
+        <h2 style="color: white;">Query: {{ query }}</h2>
+        <form action="/search" method="post">
+
+        <ul>
+        {% for result in results %}
+            <li>
+                <h3 class="rank">Rank: {{ result.rank }}</h3>
+                <p class="score">Score: {{ result.score }}</p>
+                <p class="docno">Document No.: {{ result.docno }}</p>
+                <p class="snippet">Snippet: {{ result.snippet }}</p>
+            </li>
+        {% endfor %}
+        </ul>
+            </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.container {
+    margin-top: 100px;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 400px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
